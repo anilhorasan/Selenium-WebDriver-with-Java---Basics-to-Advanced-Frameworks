@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;AnilsLearningPackage.ExtentReports.AppTest&apos; to &apos;ExtentReportTest&apos;&#x0D;&#x0A;- Original project: &apos;ExtentReports&apos;&#x0D;&#x0A;- Original element: &apos;AnilsLearningPackage.ExtentReports.AppTest&apos;&#x0D;&#x0A;- Renamed element: &apos;AnilsLearningPackage.ExtentReports.ExtentReportTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AppTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;AnilsLearningPackage.ExtentReports{AppTest.java[AppTest" matchStrategy="1" name="ExtentReportTest" qualified="false" references="true" similarDeclarations="false" stamp="1731182832626" textual="false" version="1.0"/>
+</session>

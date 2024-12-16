@@ -1,0 +1,14 @@
+package DatabaseTesting;
+import java.sql.DriverManager;
+
+
+public class JavaDatabaseConnection {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		DriverManager.getConnection("url", "root", "7412956");
+
+	}
+
+}

@@ -1,0 +1,47 @@
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
+
+public class Chapter31_01_CalendarUI_Test {
+
+	public static void main(String[] args) {
+		
+		
+		// ESTABLISH WEBDRIVER
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/MSI/Documents/chromedriver-win64-130/chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64/chrome-win64/chrome.exe");
+		WebDriver driver = new ChromeDriver(chromeOptions);
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.manage().window().maximize();
+		
+		// GO TO THE WEBSITE for testing
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+		
+		@FindBy(css = ".mb-3")
+		List<WebElement> products;
+		
+		String month = "6";
+		String day = "15";
+		String year = "2027";
+				
+		driver.findElement(By.cssSelector(".react-date-picker__inputGroup")).click();	
+		driver.findElement(By.cssSelector("button[class='react-calendar__navigation__label']")).click();
+		driver.findElement(By.cssSelector("button[class='react-calendar__navigation__label']")).click();
+		
+		List<WebElement> years = driver.findElements(By.cssSelector("button[class='react-calendar__navigation__label']"));
+		for(WebElement we : years) {
+			System.out.println(we.getText());
+		}
+
+	}
+
+}

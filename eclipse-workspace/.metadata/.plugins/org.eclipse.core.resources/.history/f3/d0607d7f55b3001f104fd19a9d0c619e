@@ -1,0 +1,12 @@
+
+public class Chapter36_01_nestedLoops {
+	public static void main(String[] args) {
+		for (int i = 1; i <= 4; i++) {
+			for (int j = 1; j <= 4; j++) {
+				// Add your logic here
+				System.out.println("i = " + i + ", j = " + j);
+			}
+
+		}
+	}
+}

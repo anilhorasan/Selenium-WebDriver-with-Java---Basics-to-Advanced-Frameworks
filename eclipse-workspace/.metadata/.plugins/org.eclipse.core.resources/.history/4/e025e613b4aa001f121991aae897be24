@@ -1,0 +1,4 @@
+module DatabaseTesting {
+	requires java.sql;
+	requires org.jspecify;
+}

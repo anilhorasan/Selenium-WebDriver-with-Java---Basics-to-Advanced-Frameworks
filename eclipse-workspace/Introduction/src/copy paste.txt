@@ -1,0 +1,132 @@
+CODE TEMPLATE: 
+
+
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Chapter07_07_Calendar_and_Dates {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", "C:/Users/MSI/Documents/chromedriver-win64-129-2/chromedriver.exe");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64 (1)/chrome-win64/chrome.exe");
+        chromeOptions.addArguments("user-data-dir=C:/Users/MSI/AppData/Local/Google/Chrome for Testing/User Data");
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		
+        //driver.get("https://rahulshettyacademy.com/dropdownsPractise");
+		driver.get("https://spicejet.com");
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		
+		
+	    
+		System.out.println();
+		
+		
+		Thread.sleep(2000L);
+
+	}
+
+}
+
+
+
+
+
+// Sibling - Child to parent traverse
+
+//header/div/button[1]/following-sibling::button[1]
+
+driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+
+System.out.println(driver.findElement(By.xpath("//header/div/button[1]/following-sibling::button[1]")).getText());
+
+System.out.println(driver.findElement(By.xpath("//header/div/button[1]/parent::div/button[2]")).getText());
+
+}
+
+}
+
+
+*****************************************************************
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WindowActivities {
+
+public static void main(String[] args) {
+
+// TODO Auto-generated method stub
+
+
+
+
+System.setProperty("webdriver.chrome.driver", "/Users/rahulshetty/Documents/chromedriver");
+
+WebDriver driver = new ChromeDriver();
+
+driver.manage().window().maximize();
+
+driver.get("http://google.com");
+
+driver.navigate().to("https://rahulshettyacademy.com");
+
+driver.navigate().back();
+
+driver.navigate().forward();
+}
+}
+
+
+public class SpicejetNewPassenger {
+
+static WebDriver driver;
+
+public static void main(String[] args) throws InterruptedException {
+
+System.setProperty("webdriver.chrome.driver", "./WebDrivers/chromedriver.exe");
+
+driver =new ChromeDriver();
+
+driver.get("https://www.spicejet.com/");
+
+driver.manage().window().maximize();
+
+Thread.sleep(6000);
+
+driver.findElement(By.xpath("//div[@id='divpaxinfo']")).click();
+
+    Thread.sleep(4000);
+
+    // Selection of Adults
+
+    WebElement Adults = driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_Adult']"));
+
+    Select adultsdrp = new Select(Adults);
+
+    adultsdrp.selectByValue("2");
+
+    // Selection of Childs
+
+    WebElement childs = driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_Child']"));
+
+    Select childsdrp = new Select(childs);
+
+    childsdrp.selectByValue("2");
+
+    driver.findElement(By.xpath(".//*[@id='divpaxinfo']")).click();
+
+    System.out.println(driver.findElement(By.xpath(".//*[@id='divpaxinfo']")).getText());
+
+}
+
+}

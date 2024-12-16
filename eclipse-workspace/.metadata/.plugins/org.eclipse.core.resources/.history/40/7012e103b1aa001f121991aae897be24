@@ -1,0 +1,31 @@
+package DatabaseTesting;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class JavaDatabaseConnection {
+
+	public static void main(String[] args) throws SQLException {
+
+		String host = "localhost";
+		String port = "3306";
+		String dbName = "qadbt";
+		String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
+		String username = "root";
+		String password = "7412956";
+		
+		Connection con = DriverManager.getConnection(url, username, password);
+		
+		Statement s = con.createStatement();
+		ResultSet rs = s.executeQuery("SELECT * FROM EmployeeInfo WHERE id = 2");
+		System.out.println(rs.getInt("age"));
+		
+		
+
+	}
+
+}

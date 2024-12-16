@@ -1,0 +1,35 @@
+package AnilsLearningPackage.ExtentReports;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+/**
+ * Unit test for simple App.
+ */
+public class ExtentReportTest {
+
+	/**
+	 * Rigorous Test :-)
+	 */
+	@Test
+	public void initialDemo() {
+		assertTrue(true);
+
+		// ESTABLISH WEBDRIVER
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/MSI/Documents/chromedriver-win64-129-2/chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64 (1)/chrome-win64/chrome.exe");
+		chromeOptions.addArguments("user-data-dir=C:/Users/MSI/AppData/Local/Google/Chrome for Testing/User Data");
+
+		// Start Maximized:
+		chromeOptions.addArguments("start-maximized");
+		WebDriver driver = new ChromeDriver(chromeOptions);
+
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+	}
+}

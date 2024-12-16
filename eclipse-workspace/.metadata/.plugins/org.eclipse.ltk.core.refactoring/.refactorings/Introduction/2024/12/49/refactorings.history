@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Chapter34_02_autoIT.java&apos; to &apos;Chapter34_02_autoIT.java&apos;&#x0D;&#x0A;- Original project: &apos;Introduction&apos;&#x0D;&#x0A;- Destination element: &apos;Chapter34_02_autoIT.java&apos;&#x0D;&#x0A;- Original element: &apos;Chapter34_02_autoIT.java&apos;" description="Copy compilation unit" destination="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;{Chapter34_02_autoIT.java" element1="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;{Chapter34_02_autoIT.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1733436391849" units="1" version="1.0"/>
+</session>

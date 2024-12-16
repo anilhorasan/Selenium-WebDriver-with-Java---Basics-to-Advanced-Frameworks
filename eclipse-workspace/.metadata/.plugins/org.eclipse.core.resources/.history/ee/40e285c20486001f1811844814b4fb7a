@@ -1,0 +1,107 @@
+import java.io.File;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Proxy;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class Chapter13_01_Miscellaneous_Topics_in_Selenium_Webdriver {
+	public static void main(String[] args) throws InterruptedException, IOException {
+		// ESTABLISH WEBDRIVER
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/MSI/Documents/chromedriver-win64-129-2/chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64 (1)/chrome-win64/chrome.exe");
+		chromeOptions.addArguments("user-data-dir=C:/Users/MSI/AppData/Local/Google/Chrome for Testing/User Data");
+		chromeOptions.setAcceptInsecureCerts(true);
+		
+		// Proxy
+		Proxy proxy = new Proxy();
+		proxy.setHttpProxy("ipaddress:4444");
+		chromeOptions.setCapability("proxy", proxy);
+		
+		// Download Directory
+		Map<String, Object> prefs = new HashMap<String, Object>();
+		prefs.put("download.default_directory", "/directory/path");
+		chromeOptions.setExperimentalOption("prefs", prefs);
+		
+		// Start Maximized: 
+		chromeOptions.addArguments("start-maximized");
+		
+		WebDriver driver = new ChromeDriver(chromeOptions);
+		// GO TO THE WEBSITE for testing
+		driver.get("https://expired.badssl.com");
+		Thread.sleep(2000);
+		
+		// or maximize later...
+		driver.manage().window().maximize();
+		
+		// delete cookies:
+		driver.manage().deleteAllCookies();
+		driver.manage().deleteCookieNamed("cookie");
+		
+		// Take a screenshot:
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src,  new File("C://Users//MSI//screenshot.png"));
+		
+		// Find Broken URL's
+		// First find all the url's 
+		// Java method will call URL's and gets you the status code
+		// If status code > 400, then the URL is not working. 
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		//Working link:
+		String url = driver.findElement(By.cssSelector("a[href*='soapui']")).getAttribute("href");
+		//Broken link:
+		String url = driver.findElement(By.cssSelector("a[href*='brokenlink']")).getAttribute("href");
+		
+		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+		conn.setRequestMethod("HEAD");
+		conn.connect();
+		int responseCode = conn.getResponseCode();
+		System.out.println(responseCode);
+		
+		/*
+		 * Using the ChromeOptions class
+		 * 
+		 * - Using DesiredCapabilities
+		 * - Use custom profile (also called user data directory)
+		 * options.addArguments("user-data-dir=/path/to/your/custom/profile");
+		 * - Start Chrome maximized
+		 * options.addArguments("start-maximized");
+		 * - Using a Chrome executable in a non-standard location
+		 * options.setBinary("/path/to/other/chrome/binary");
+		 * - Block dialog windows
+		 * options.setExperimentalOption("excludeSwitches",
+         * Arrays.asList("disable-popup-blocking"));
+		 * - Set download directory
+		 * Map<String, Object> prefs = new HashMap<String, Object>();
+         * prefs.put("download.default_directory", "/directory/path");
+		 * options.setExperimentalOption("prefs", prefs);
+		 * 
+		 * for more info: https://developer.chrome.com/docs/chromedriver/capabilities
+		 * 
+		 * 
+		 * 
+		 */
+
+		
+		
+
+	}
+}
+

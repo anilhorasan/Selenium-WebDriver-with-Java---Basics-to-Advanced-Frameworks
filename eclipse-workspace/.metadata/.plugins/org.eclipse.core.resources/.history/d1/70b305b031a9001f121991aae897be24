@@ -1,0 +1,99 @@
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
+
+public class Chapter31_01_CalendarUI_Test {
+
+	public static void main(String[] args) {
+
+		// ESTABLISH WEBDRIVER
+		System.setProperty("webdriver.chrome.driver", "C:/Users/MSI/Documents/chromedriver-win64-130/chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64/chrome-win64/chrome.exe");
+		WebDriver driver = new ChromeDriver(chromeOptions);
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.manage().window().maximize();
+
+		// GO TO THE WEBSITE for testing
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+
+		String month = "6";
+		String day = "15";
+		String year = "2007";
+
+		driver.findElement(By.cssSelector(".react-date-picker__inputGroup")).click();
+		driver.findElement(By.cssSelector("button[class='react-calendar__navigation__label']")).click();
+		driver.findElement(By.cssSelector("button[class='react-calendar__navigation__label']")).click();
+
+		
+		List<WebElement> years;
+		String y = "0";
+		while(!y.equals(year)) {
+			years = driver.findElements(By.cssSelector("div[class='react-calendar__viewContainer'] button"));
+			int firstYear = Integer.parseInt(years.get(0).getText()); //first year as shown in UI to check whether to go back or forward
+			for(WebElement we:years) {
+				y=we.getText();
+				System.out.println(y);
+				if(y.equals(year)) {
+					we.click();
+					break;
+				}
+			}
+			if(y.equals(year)) {
+				break;
+			}
+			//System.out.println(Integer.parseInt(years.get(0).getText()));
+			System.out.println(Integer.parseInt(year));
+			if(firstYear > Integer.parseInt(year)) {
+				System.out.println("buyuktur");
+				driver.findElement(By.xpath("//button[contains(text(),'‹')]")).click();
+			}
+			else {
+				System.out.println("kucuktur");
+				driver.findElement(By.xpath("//button[contains(text(),'›')]")).click();
+			}
+			
+		}
+		
+		List<WebElement> months = driver.findElements(By.cssSelector("div[class='react-calendar__viewContainer'] button"));
+		for(WebElement we : months) {
+			System.out.println(we.getText());
+			if(we.getText().equalsIgnoreCase(month)) {
+				System.out.println("we: " + we.getText());
+				we.click();
+			}
+		}
+		
+		List<WebElement> days = driver.findElements(By.cssSelector
+				(".react-calendar__month-view__days__day:not(.react-calendar__month-view__days__day--neighboringMonth)"));
+		
+		for(WebElement we : days) {
+			System.out.println(we.getText());
+			if(we.getText().equalsIgnoreCase(day)) {
+				System.out.println("we: " + we.getText());
+				we.click();
+			}
+		}
+		
+		
+		
+		
+
+		/* List<WebElement> years = driver.findElements(By.cssSelector("div[class='react-calendar__viewContainer'] button"));
+		 * for (int i = 0; i < years.size(); i++) { String y = years.get(i).getText();
+		 * System.out.println(y); while (!y.equals(year)) { if (y.equals(year)) { break;
+		 * }
+		 * 
+		 * } }
+		 */
+
+	}
+
+}

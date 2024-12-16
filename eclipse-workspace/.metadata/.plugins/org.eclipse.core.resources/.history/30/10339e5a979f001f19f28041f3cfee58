@@ -1,0 +1,76 @@
+package AnilsLearningPackage.ExtentReports;
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+/**
+ * Unit test for simple App.
+ */
+public class ExtentReportTest {
+
+	/**
+	 * Rigorous Test :-)
+	 */
+	
+	ExtentReports extent;
+	
+	@BeforeTest
+	public void config() {
+		
+		
+
+	}
+	
+	
+	@Test
+	public void initialDemo() {
+
+		
+		// ESTABLISH WEBDRIVER
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/MSI/Documents/chromedriver-win64-130/chromedriver.exe");
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.setBinary("C:/Users/MSI/Downloads/chrome-win64/chrome-win64/chrome.exe");
+
+		// Start Maximized:
+		chromeOptions.addArguments("start-maximized");
+		WebDriver driver = new ChromeDriver(chromeOptions);
+
+		driver.get("https://rahulshettyacademy.com");
+		String title = driver.getTitle();
+		System.out.println(title);
+
+		
+		String path=System.getProperty("user.dir")+"\\reports\\index.html";
+		ExtentSparkReporter reporter=new ExtentSparkReporter(path);
+		reporter.config().setReportName("We Automation Result");
+		reporter.config().setDocumentTitle("Test Results");
+		extent=new ExtentReports();
+		extent.attachReporter(reporter);
+		extent.createTest("MyFirstTest")
+		  .log(Status.PASS, "This is a logging event for MyFirstTest, and it passed!");
+		extent.flush();
+
+	}
+	
+	@AfterMethod
+	public void afterMethod() {
+	    //extent.flush();
+	}
+
+	@AfterSuite
+	public void afterSuiteMethod() {
+	    //extent.close();
+	}
+}

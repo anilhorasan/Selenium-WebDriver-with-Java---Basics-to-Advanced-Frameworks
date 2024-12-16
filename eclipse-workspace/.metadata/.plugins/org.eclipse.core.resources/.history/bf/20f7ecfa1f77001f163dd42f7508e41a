@@ -1,0 +1,57 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+// Chapter 5
+public class Locators {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Invoking Browser
+		//Chrome - Chrome Driver --> Methods
+		//Firefox - FirefoxDriver --> Methods		
+		//Safari - SafariDriver --> Methods
+		
+		//Webdriver - Abstract Class 0
+		
+		//WebDriverWait wait = new WebDriverWait(driver, 2);
+		WebDriverManager.chromedriver().setup();  // Automatically downloads the correct driver version
+        ChromeOptions options = new ChromeOptions();
+        
+        options.addArguments("--start-maximized");
+        options.addArguments("user-data-dir=C:/Users/MSI/AppData/Local/Google/Chrome/User Data/Default");
+        //options.addArguments("--user-data-dir=Amazon");
+        //options.addArguments("profile-directory=Default");
+        // options.addArguments("--headless=old");
+        //WebDriver driver = new ChromeDriver(options);
+        
+		
+		//System.setProperty("webdriver.chrome.driver", "C:/Users/MSI/Documents/chromedriver-win64/chromedriver.exe");
+		
+		//ChromeOptions options = new ChromeOptions();
+		//options.addArguments("user-data-dir=C:/Users/MSI/AppData/Local/Google/Chrome/User Data");
+		//options.addArguments("--headless=old");
+		//options.addArguments("--start-maximized");
+		// options.addArguments("--window-position=-2400,-2400");
+		
+		WebDriver driver = new ChromeDriver(options);
+
+		//driver.quit();
+		driver.get("https://rahulshettyacademy.com/locatorspractice");
+		
+		driver.findElement(By.id("inputUsername")).sendKeys("rahul");
+		driver.findElement(By.name("inputPassword")).sendKeys("hello123");
+		driver.findElement(By.className("signInBtn")).click();
+		
+		System.out.println(driver.getTitle());
+		System.out.println(driver.getCurrentUrl());
+		//driver.close();  //only current window
+		//driver.quit();  // close all associated tabs 
+		//Difference between quit and close is a good interview  question! 
+				
+				
+	}
+}
